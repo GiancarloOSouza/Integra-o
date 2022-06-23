@@ -34,7 +34,7 @@ function Registrar() {
         alert("Cadastro realizado com sucesso!");
         navigate("/");
       } else {
-        alert("Erro ao realizar o cadastro, por favor tente novameante mais tarde");
+        alert("Erro ao realizar o cadastro");
       }
     }
     return(

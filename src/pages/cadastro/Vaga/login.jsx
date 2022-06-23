@@ -32,10 +32,10 @@ export const Login = () => {
                 // localStorage.setItem("senha", response.data.Usuario.senha);
                 navigate("/Estacionamento");
             } else {
-                alert("Erro ao realizar o login, check suas credenciais");
+                alert("Dados errados ou inexistentes");
             }
         } catch (error) {
-            alert("Erro ao realizar o login, por favor tente novameante mais tarde");
+            alert("Erro ao realizar o login, por favor tente novamente mais tarde");
         }
     }
 
