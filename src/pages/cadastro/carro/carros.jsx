@@ -1,21 +1,47 @@
 import React, { useState} from "react";
 import PageDefault from "../../../components/PageDefault";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import png from '../../../assets/img/logo.png'
+import  api  from '../../../api';
 
 function Registrar() {
     const [nome, setNome] = useState("")
     const [CPF, setCPF] = useState("")
-    const [carro, setCarro] = useState("")
+    const [Rg, setRg] = useState("")
+    const [CellNumber, setCellNumber] = useState("")
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
 
+    const navigate = useNavigate();
 
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+    const response = await api.post("/usuario", {
+
+        email: email,
+        senha: password,
+      });
+
+      const res = await api.post("/pessoa", {
+        Nome: nome,
+        Cpf: CPF,
+        Rg: Rg,
+        CellNumber: CellNumber,
+        email: email,
+      });
+
+      if (response.status === 200 && res.status === 200) {
+        alert("Cadastro realizado com sucesso!");
+        navigate("/");
+      } else {
+        alert("Erro ao realizar o cadastro, por favor tente novameante mais tarde");
+      }
+    }
     return(
         <PageDefault>
             <div className="container-login">
                 <div className="wrap-login">
-                <form className="login-form">
+                <form className="login-form" onSubmit={handleSubmit}>
                         <span className="title">Criar Conta!!!</span>
                         <span className="title">
                             <img src={png} alt="" />
@@ -24,7 +50,7 @@ function Registrar() {
                         <div className="wrap-input">
                             <input
                              className={nome !== "" ? 'has-val input' : 'input'} 
-                             type="nome"
+                             type="text"
                              value={nome}
                              onChange={e => setNome(e.target.value)} 
                              />
@@ -35,7 +61,7 @@ function Registrar() {
                         <div className="wrap-input">
                             <input
                              className={CPF !== "" ? 'has-val input' : 'input'} 
-                             type="CPF"
+                             type="text"
                              value={CPF}
                              onChange={e => setCPF(e.target.value)} 
                              />
@@ -45,15 +71,25 @@ function Registrar() {
 
                         <div className="wrap-input">
                             <input
-                             className={carro !== "" ? 'has-val input' : 'input'} 
-                             type="carro"
-                             value={carro}
-                             onChange={e => setCarro(e.target.value)} 
+                             className={Rg !== "" ? 'has-val input' : 'input'} 
+                             type="text"
+                             value={Rg}
+                             onChange={e => setRg(e.target.value)} 
                              />
-                            <span className="focus-input" data-placeholder="Modelo do Carro e Placa"></span>
+                            <span className="focus-input" data-placeholder="Seu Rg"></span>
 
                         </div>
 
+                        <div className="wrap-input">
+                            <input
+                             className={CellNumber !== "" ? 'has-val input' : 'input'} 
+                             type="text"
+                             value={CellNumber}
+                             onChange={e => setCellNumber(e.target.value)} 
+                             />
+                            <span className="focus-input" data-placeholder="Seu Numero de celular"></span>
+
+                        </div>
 
                         <div className="wrap-input">
                             <input
@@ -82,7 +118,7 @@ function Registrar() {
                         </div>
 
                         <div className="text-center">
-                            <span className="txt1">Não Possui Conta?</span>
+                            <span className="txt1">Já possui conta?</span>
 
                             <Link className="txt2" to="/">Acessar com Email e senha</Link>
 
