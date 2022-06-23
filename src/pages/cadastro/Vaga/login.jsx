@@ -30,7 +30,7 @@ export const Login = () => {
                 localStorage.setItem("email", response.data.usuario.email);
                 localStorage.setItem("token", response.data.token);
                 // localStorage.setItem("senha", response.data.Usuario.senha);
-                navigate("/");
+                navigate("/Estacionamento");
             } else {
                 alert("Erro ao realizar o login, check suas credenciais");
             }

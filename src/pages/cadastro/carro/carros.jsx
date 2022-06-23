@@ -84,7 +84,7 @@ function Registrar() {
                         <div className="text-center">
                             <span className="txt1">Não Possui Conta?</span>
 
-                            <Link className="txt2" to="/login">Acessar com Email e senha</Link>
+                            <Link className="txt2" to="/">Acessar com Email e senha</Link>
 
                         </div>
 

@@ -14,8 +14,8 @@ function Menu() {
                 <img className="logo" src={logo} alt= "Logo Estacionamento" />
             </Link>
 
-            <Button as={Link} className="ButtonLink" to='/login'>
-                Cadastrar/Login
+            <Button as={Link} className="ButtonLink" to='/'>
+                Login
             </Button>
         </nav>
     )
